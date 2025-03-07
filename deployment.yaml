@@ -14,6 +14,11 @@ spec:
           image: sp013719/rest-api:v1.0.6
           ports:
             - containerPort: 3000
+          env:
+            - name: REDIS_HOST
+              value: redis-service  # connect to redis-service through DNS
+            - name: REDIS_PORT
+              value: "6379"  # default port of Redis
   selector:
     matchLabels:
       app: demoApp
