@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-demo-container
-          image: sp013719/rest-api:v1.0.7
+          image: sp013719/rest-api:v1.0.8
           ports:
             - containerPort: 3000
           env:
