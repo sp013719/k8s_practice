@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-deployment
+  name: app-deployment
 spec:
   replicas: 3
   template:
@@ -19,6 +19,29 @@ spec:
               value: redis-service  # connect to redis-service through DNS
             - name: REDIS_PORT
               value: "6379"  # default port of Redis
+            - name: POSTGRES_HOST
+              value: postgres-service  # connect to postgres-service through DNS
+            - name: POSTGRES_PORT
+              value: "5432"  # default port of PostgreSQL              
+            - name: POSTGRES_DB
+              value: mydatabase
+            - name: POSTGRES_USER
+              value: myuser
+            - name: POSTGRES_PASSWORD
+              value: mypassword              
   selector:
     matchLabels:
       app: demoApp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+spec:
+  selector:
+    app: demoApp
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
