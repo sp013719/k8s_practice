@@ -1,22 +1,22 @@
-name: Hello GitHub Actions  # The name of the workflow
+name: Hello GitHub Actions # The name of the workflow
 
-on: [push]                # When you push code, the workflow is triggered
+on: [push] # When you push code, the workflow is triggered
 
 jobs:
-  say-hello:              # The ID of the job
-    runs-on: ubuntu-latest # Use the GitHub provided Ubuntu runner
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.10, 3.11]
-    steps:                # Define the specific steps
-      - name: Greet the user
-        run: echo "Hello, GitHub Actions is running!"
+    say-hello: # The ID of the job
+        runs-on: ubuntu-latest # Use the GitHub provided Ubuntu runner
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest, macos-latest]
+                python-version: ["3.10", "3.11"]
+        steps: # Define the specific steps
+            - name: Greet the user
+              run: echo "Hello, GitHub Actions is running!"
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }} # Here it will dynamically fill in 3.9 or 3.10
-          
-      - name: Display Python version
-        run: python --version
+            - name: Set up Python ${{ matrix.python-version }}
+              uses: actions/setup-python@v4
+              with:
+                  python-version: ${{ matrix.python-version }} # Here it will dynamically fill in 3.9 or 3.10
+
+            - name: Display Python version
+              run: python --version
