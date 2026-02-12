@@ -1,0 +1,10 @@
+name: Hello GitHub Actions  # The name of the workflow
+
+on: [push]                # When you push code, the workflow is triggered
+
+jobs:
+  say-hello:              # The ID of the job
+    runs-on: ubuntu-latest # Use the GitHub provided Ubuntu runner
+    steps:                # Define the specific steps
+      - name: Greet the user
+        run: echo "Hello, GitHub Actions is running!"
